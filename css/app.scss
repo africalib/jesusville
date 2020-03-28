@@ -1,0 +1,314 @@
+html, body {
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.2rem;
+}
+
+.app {
+    img {
+        max-width: 100%;
+    }
+
+    > header {
+        font-size: 1.5rem;
+        border-bottom: 1px solid #dee2e6;
+        width: 100%;
+        background: #f7f7f7;
+
+        > .container {
+            > div {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+
+                > .logo {
+                    padding: 0.7rem 0;
+                    font-size: 3rem;
+                    font-family: 'Asap', sans-serif;
+                    font-weight: 700;
+                    font-style: italic;
+                }
+            }
+
+            a.btn {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    > article {
+        height: 100%;
+
+        > .container {
+            height: 100%;
+
+            > .row {
+                height: 100%;
+
+                > .left-side {
+                    padding-top: 3.5rem;
+                    padding-left: 1.2rem;
+                    height: 100%;
+                    position: relative;
+
+                    > .icon {
+                        margin-bottom: 3rem;
+
+                        > h4 {
+                            > img {
+                                width: 2rem;
+                                margin-right: 0.7rem;
+                            }
+
+                            > span {
+                                vertical-align: middle;
+                            }
+
+                            > .badge {
+                                margin-left: 0.5rem;
+                                padding-top: 0;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+
+                > .right-side {
+                    height: 100%;
+                    overflow: auto;
+                    border-left: 1px solid #dee2e6;
+                    padding-bottom: 10rem;
+
+                    > .wrapper {
+                        height: 100%;
+                        padding: 3.5rem;
+                        padding-right: 0;
+
+                        > .section {
+                            > h2 {
+                                font-weight: bold;
+                            }
+
+                            > .description {
+                                font-size: 1.5rem;
+                                color: #3a3a3a;
+                                margin-bottom: 2rem;
+                            }
+
+                            > .card {
+                                iframe {
+                                    width: 100%;
+                                    height: 50rem;
+                                }
+
+                                > .card-body {
+                                    padding: 2rem;
+
+                                    > .card-text {
+                                        font-size: 1.5rem;
+                                        margin-bottom: 2rem;
+                                    }
+
+                                    > .btn {
+                                        font-size: 1.4rem;
+                                    }
+                                }
+                            }
+
+                            &.home {
+                                > .poster {
+                                    background: url(../img/onestep.jpg);
+                                    height: 20rem;
+                                    background-size: auto 100%;
+                                    background-position: right;
+
+                                    > .sm-title {
+                                        font-size: 2rem;
+                                        color: #5a5a5a;
+                                        letter-spacing: 0.1rem;
+                                    }
+
+                                    > .big-title {
+                                        font-size: 3rem;
+                                        margin-top: 0.5rem;
+                                        margin-bottom: 3rem;
+                                        letter-spacing: 0.1rem;
+                                    }
+
+                                    > .word {
+                                        color: #5a5a5a;
+                                        font-style: italic;
+                                        letter-spacing: 0.1rem;
+                                        font-size: 2rem;
+                                    }
+                                }
+
+                                > .slogun {
+                                    position: relative;
+                                    font-size: 2.1rem;
+                                    font-style: italic;
+
+                                    > .icon {
+                                        margin-bottom: 2.5rem;
+                                        position: absolute;
+                                        right: 0;
+                                        top: 0.5rem;
+                                        text-align: right;
+
+                                        > div {
+                                            font-size: 0;
+                                            margin-left: 0.2rem;
+                                            margin-bottom: 0.8rem;
+
+                                            > span {
+                                                display: inline-block;
+                                                height: 0.2rem;
+                                                background: #666;
+                                                width: 3rem;
+                                            }
+
+                                            &.first {
+                                                > span {
+                                                    width: 2rem;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                > .search {
+                                    margin-top: 3rem;
+                                    position: relative;
+
+                                    > input {
+                                        height: 5rem;
+                                        background: #f7f7f7;
+                                        border-color: #dee2e6;
+                                        padding-left: 4.2rem;
+                                        font-size: 1.6rem;
+                                    }
+
+                                    > i {
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        font-size: 1.6rem;
+                                        padding: 1.7rem;
+                                    }
+                                }
+
+                                > .picture {
+                                    margin-top: 5rem;
+
+                                    > .each {
+                                        margin-top: 3rem;
+
+                                        > .title {
+                                            margin-bottom: 2rem;
+                                            font-size: 1.6rem;
+                                        }
+
+                                        > .pictures {
+                                            justify-content: space-between;
+                                            display: flex;
+
+                                            > .each {
+                                                display: inline-block;
+                                                vertical-align: top;
+                                                width: 14rem;
+                                                height: 9.3rem;
+                                                background: #eee;
+                                                border: 1px solid #ddd;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > footer {
+        border-top: 1px solid #dee2e6;
+        background: #f7f7f7;
+        display: inline-block;
+        width: 100%;
+
+        > .container {
+            > .copyright {
+                display: inline-block;
+                padding: 2.1rem 0;
+                font-size: 1.4rem;
+
+                p {
+                    margin-bottom: 0.42rem;
+                }
+
+                a {
+                    color: initial;
+                }
+            }
+
+            > .store {
+                display: inline-block;
+                padding: 0.5rem 0;
+                text-align: right;
+                float: right;
+
+                > a {
+                    margin: 1rem;
+                    display: inline-block;
+                    margin: 2.1rem 1.2rem;
+
+                    img {
+                        width: 3.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:767px) {
+    .app {
+        > article > .container > .row {
+            > .left-side {
+                text-align: center;
+                padding-top: 2rem;
+
+                > .icon > h4 > img {
+                    display: block;
+                    margin: 0 auto;
+                    margin-bottom: 0.4rem;
+                }
+            }
+
+            > .right-side {
+                > .wrapper {
+                    padding: 1rem;
+
+                    > .section.home > .picture > .each > .pictures {
+                        display: block;
+                        white-space: nowrap;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+
+        > footer {
+            text-align: center;
+
+            > .container > .store {
+                float:none;
+            }
+        }
+    }
+}
