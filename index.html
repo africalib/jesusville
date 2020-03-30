@@ -7,17 +7,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Asap:700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
     <link href="css/app.css" rel="stylesheet" />
 </head>
 <body>
     <div id="app" class="app">
         <header>
             <div class="container">
-                <div class="d-flex flex-column flex-md-row align-items-center">
-                    <div class="logo my-0 mr-md-auto">
-                        <span>jesusville</span>
+                <div class="wrapper">
+                    <div class="logo">
+                        <span>jesus-ville</span>
                     </div>
-                    <a class="btn btn-outline-primary hidden-xs-down d-none d-lg-block d-md-block" href="#">sign up</a>
+                    <span class="slogun">예수촌교회 - 지구촌을 예수촌으로!</span>
+                    <a class="btn btn-outline-light hidden-xs-down d-none d-lg-block d-md-block" href="#">로그인</a>
                 </div>
             </div>
         </header>
@@ -28,47 +30,81 @@
                         <div class="icon">
                             <h4>
                                 <img src="svg/home.svg" />
-                                <span>
-                                    <b>처음 화면</b>
-                                </span>
+                                <b>
+                                    <span>처음</span>
+                                    <span class="d-none d-lg-inline-block">화면</span>
+                                </b>
                             </h4>
                         </div>
+                        <hr />
                         <div class="icon">
                             <h4>
                                 <img src="svg/user.svg" />
-                                <span>교회 소개</span>
+                                <span class="d-none d-lg-inline-block">교회</span>
+                                <span>소개</span>
                             </h4>
                         </div>
                         <div class="icon">
                             <h4>
-                                <img src="svg/play.svg" />
-                                <span>설교 영상</span>
+                                <img src="svg/map.svg" />
+                                <span class="d-none d-lg-inline-block">교회</span>
+                                <span>지도</span>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/microphone.svg" />
+                                <span>설교</span>
+                                <span class="d-none d-lg-inline-block">영상</span>
                                 <span class="badge badge-pill badge-danger">new</span>
                             </h4>
                         </div>
                         <div class="icon">
                             <h4>
                                 <img src="svg/play.svg" />
-                                <span>찬양 영상</span>
+                                <span>찬양</span>
+                                <span class="d-none d-lg-inline-block">영상</span>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/pray.svg" />
+                                <span>기도</span>
+                                <span class="d-none d-lg-inline-block">나눔</span>
+                                <span class="badge badge-pill badge-danger">new</span>
                             </h4>
                         </div>
                         <div class="icon">
                             <h4>
                                 <img src="svg/album.svg" />
-                                <span>포토 앨범</span>
+                                <span class="d-none d-lg-inline-block">포토</span>
+                                <span>앨범</span>
                             </h4>
                         </div>
+                        <hr />
                         <div class="icon">
                             <h4>
-                                <img src="svg/map.svg" />
-                                <span>오시는 길</span>
+                                <img src="svg/youtube.svg" />
+                                <span>유튜브</span>
+                                <span class="d-none d-lg-inline-block">채널</span>
                             </h4>
                         </div>
                     </div>
                     <div class="right-side col-10">
                         <div class="wrapper">
                             <div class="section home">
-                                <img src="img/poster.png" />
+                                <div class="slogun">
+                                    <img src="img/img2.png" />
+                                    <div class="text d-none d-lg-block">
+                                        <div style="font-size:2.1rem;margin-bottom:0.75rem;color:rgba(255,255,255,0.76);">2020년도 하나님의 부르심 -</div>
+                                        <div style="font-size:3.3rem;color:rgba(255,255,255,0.9);">하나님에게로 <span>한걸음</span></div>
+                                        <div style="font-size:1.8rem;font-weight:100;margin-top:3rem;color:rgba(255,255,255,0.76);">
+                                            <i>영문 밖으로 그에게 나아가자 (히브리서 13장 13절)</i>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="poster d-none">
                                     <div class="sm-title">2020년도 교회를 향한 부르심</div>
                                     <div class="big-title">하나님에게로 <b>한걸음</b></div>
@@ -80,41 +116,74 @@
                                 </div>
                                 <div class="picture">
                                     <div class="each">
-                                        <div class="title">최근 설교 영상</div>
+                                        <div class="title">
+                                            <span>최근 설교 영상</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
                                         <div class="pictures">
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
+                                            <div class="each" v-for="s in documents.sermons">
+                                                <img v-bind:src="s.imageSrc" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="each">
-                                        <div class="title">최근 찬양 영상</div>
+                                        <div class="title">
+                                            <span>최근 찬양 영상</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
                                         <div class="pictures">
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
+                                            <div class="each" v-for="s in documents.worships">
+                                                <img v-bind:src="s.imageSrc" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="each">
-                                        <div class="title">최근 포토 앨범</div>
+                                        <div class="title">
+                                            <span>최근 포토 앨범</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
                                         <div class="pictures">
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
-                                            <div class="each"></div>
+                                            <div class="each">
+                                                <img src="img/thumb1.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb2.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb3.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb4.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb5.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="section d-none">
+                            <!--<div class="section d-none">
                                 <h2 class="mb-4">주일 설교</h2>
                                 <div class="description">Some quick example text to build on the card title and make up the bulk of the card's content.</div>
                                 <div class="card">
@@ -127,7 +196,7 @@
                                         <a href="#" class="btn btn-primary">공유하기</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -153,5 +222,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

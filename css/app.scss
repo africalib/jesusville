@@ -14,28 +14,59 @@ body {
         max-width: 100%;
     }
 
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+        border-radius: 0;
+    }
+
     > header {
         font-size: 1.5rem;
         border-bottom: 1px solid #dee2e6;
         width: 100%;
-        background: #f7f7f7;
+        background: #1d2832;
+        color: #fff;
+        height: 7rem;
 
         > .container {
-            > div {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+            > .wrapper {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                position: relative;
 
                 > .logo {
-                    padding: 0.7rem 0;
-                    font-size: 3rem;
+                    font-size: 2.4rem;
                     font-family: 'Asap', sans-serif;
                     font-weight: 700;
                     font-style: italic;
-                }
-            }
+                    padding: 1.5rem 0;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
 
-            a.btn {
-                font-size: 1.5rem;
+                    > img {
+                        height: 3rem;
+                        margin-right: 0.5rem;
+                    }
+                }
+
+                > .slogun {
+                    font-family: 'Nanum Square';
+                    margin-top: 1rem;
+                    letter-spacing: 1px;
+                    display: inline-block;
+                }
+
+                > a.btn {
+                    margin-top: 0.75rem;
+                    float: right;
+                }
             }
         }
     }
@@ -50,13 +81,13 @@ body {
                 height: 100%;
 
                 > .left-side {
-                    padding-top: 3.5rem;
+                    padding-top: 0.75rem;
                     padding-left: 1.2rem;
                     height: 100%;
                     position: relative;
 
                     > .icon {
-                        margin-bottom: 3rem;
+                        margin: 3rem 0;
 
                         > h4 {
                             > img {
@@ -75,6 +106,10 @@ body {
                             }
                         }
                     }
+
+                    hr {
+                        border-color: #dee2e6;
+                    }
                 }
 
                 > .right-side {
@@ -85,8 +120,7 @@ body {
 
                     > .wrapper {
                         height: 100%;
-                        padding: 3.5rem;
-                        padding-right: 0;
+                        padding: 3.5rem 0 3.5rem 1.75rem;
 
                         > .section {
                             > h2 {
@@ -149,34 +183,16 @@ body {
 
                                 > .slogun {
                                     position: relative;
-                                    font-size: 2.1rem;
-                                    font-style: italic;
 
-                                    > .icon {
-                                        margin-bottom: 2.5rem;
+                                    > .text {
+                                        font-family: 'Nanum Square';
                                         position: absolute;
-                                        right: 0;
-                                        top: 0.5rem;
-                                        text-align: right;
-
-                                        > div {
-                                            font-size: 0;
-                                            margin-left: 0.2rem;
-                                            margin-bottom: 0.8rem;
-
-                                            > span {
-                                                display: inline-block;
-                                                height: 0.2rem;
-                                                background: #666;
-                                                width: 3rem;
-                                            }
-
-                                            &.first {
-                                                > span {
-                                                    width: 2rem;
-                                                }
-                                            }
-                                        }
+                                        left: 0;
+                                        top: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        background: rgba(29, 40, 50, 0.5);
+                                        padding: 7.6rem 6rem;
                                     }
                                 }
 
@@ -186,7 +202,7 @@ body {
 
                                     > input {
                                         height: 5rem;
-                                        background: #f7f7f7;
+                                        background: #eee;
                                         border-color: #dee2e6;
                                         padding-left: 4.2rem;
                                         font-size: 1.6rem;
@@ -208,8 +224,16 @@ body {
                                         margin-top: 3rem;
 
                                         > .title {
-                                            margin-bottom: 2rem;
+                                            margin-bottom: 1.1rem;
                                             font-size: 1.6rem;
+
+                                            span {
+                                                &.more {
+                                                    float: right;
+                                                    font-size: 1.3rem;
+                                                    margin-top: -0.25rem;
+                                                }
+                                            }
                                         }
 
                                         > .pictures {
@@ -219,10 +243,31 @@ body {
                                             > .each {
                                                 display: inline-block;
                                                 vertical-align: top;
-                                                width: 14rem;
-                                                height: 9.3rem;
+                                                width: 17rem;
+                                                height: 9.65rem;
                                                 background: #eee;
                                                 border: 1px solid #ddd;
+                                                position: relative;
+
+                                                > .tent {
+                                                    position: absolute;
+                                                    left: 0;
+                                                    top: 0;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    background: rgba(29, 40, 50, 0.5);
+                                                    text-align: center;
+
+                                                    img {
+                                                        height: 2.5rem;
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        margin-top: -1.25rem;
+                                                        margin-left: -1.25rem;
+                                                        opacity: 0.75;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -281,7 +326,7 @@ body {
         > article > .container > .row {
             > .left-side {
                 text-align: center;
-                padding-top: 2rem;
+                padding: 0;
 
                 > .icon > h4 > img {
                     display: block;
@@ -307,7 +352,7 @@ body {
             text-align: center;
 
             > .container > .store {
-                float:none;
+                float: none;
             }
         }
     }
