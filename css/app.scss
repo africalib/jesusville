@@ -64,7 +64,7 @@ body {
                 }
 
                 > a.btn {
-                    margin-top: 0.75rem;
+                    margin-top: 0.51rem;
                     float: right;
                 }
             }
@@ -107,7 +107,21 @@ body {
                         }
                     }
 
-                    hr {
+                    > .account {
+                        margin-top: 3rem;
+                        padding-top: 3rem;
+                        border-top: 1px solid #dee2e6;
+                        font-size: 1.4rem;
+
+                        > h4 {
+                            > img {
+                                width: 2rem;
+                                margin-right: 0.7rem;
+                            }
+                        }
+                    }
+
+                    > hr {
                         border-color: #dee2e6;
                     }
                 }
@@ -120,7 +134,7 @@ body {
 
                     > .wrapper {
                         height: 100%;
-                        padding: 3.5rem 0 3.5rem 1.75rem;
+                        padding: 2.5rem 0 3.5rem 1.75rem;
 
                         > .section {
                             > h2 {
@@ -180,8 +194,7 @@ body {
                                         font-size: 2rem;
                                     }
                                 }
-
-                                > .slogun {
+                                /*> .slogun {
                                     position: relative;
 
                                     > .text {
@@ -194,8 +207,7 @@ body {
                                         background: rgba(29, 40, 50, 0.5);
                                         padding: 7.6rem 6rem;
                                     }
-                                }
-
+                                }*/
                                 > .search {
                                     margin-top: 3rem;
                                     position: relative;
@@ -323,10 +335,18 @@ body {
 
 @media(max-width:767px) {
     .app {
+        header > .container > .wrapper > .slogun {
+            float: right;
+        }
+
         > article > .container > .row {
             > .left-side {
                 text-align: center;
                 padding: 0;
+
+                > hr {
+                    display: none;
+                }
 
                 > .icon > h4 > img {
                     display: block;
