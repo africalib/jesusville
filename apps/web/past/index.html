@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>예수촌교회</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Asap:700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
+    <link href="css/app.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app" class="app">
+        <header>
+            <div class="container">
+                <div class="wrapper">
+                    <div class="logo">
+                        <span>jesusville</span>
+                    </div>
+                    <span class="vision">예수촌교회 - 지구촌을 예수촌으로!</span>
+                    <a class="btn btn-outline-primary hidden-xs-down d-none d-lg-block d-md-block" href="#">로그인</a>
+                </div>
+            </div>
+        </header>
+        <article>
+            <div class="container">
+                <div class="row">
+                    <div class="left-side col-2">
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/home.svg" />
+                                <b>
+                                    <span>처음</span>
+                                    <span class="d-none d-lg-inline-block">화면</span>
+                                </b>
+                            </h4>
+                        </div>
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/user.svg" />
+                                <span class="d-none d-lg-inline-block">교회</span>
+                                <span>소개</span>
+                            </h4>
+                        </div>
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/map.svg" />
+                                <span class="d-none d-lg-inline-block">교회</span>
+                                <span>지도</span>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/microphone.svg" />
+                                <span>설교</span>
+                                <span class="d-none d-lg-inline-block">영상</span>
+                                <span class="badge badge-pill badge-danger">new</span>
+                            </h4>
+                        </div>
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/musical-note.svg" />
+                                <span>찬양</span>
+                                <span class="d-none d-lg-inline-block">영상</span>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/team.svg" />
+                                <span>기도</span>
+                                <span class="d-none d-lg-inline-block">나눔</span>
+                            </h4>
+                        </div>
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/album.svg" />
+                                <span class="d-none d-lg-inline-block">포토</span>
+                                <span>앨범</span>
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/youtube.svg" />
+                                <span>유튜브</span>
+                                <span class="d-none d-lg-inline-block">채널</span>
+                            </h4>
+                        </div>
+                        <div class="icon">
+                            <h4>
+                                <img src="svg/propose.svg" />
+                                <span>헌금</span>
+                                <span class="d-none d-lg-inline-block">계좌</span>
+                            </h4>
+                            <br />
+                            <!--<div>
+                                <div><b>(주일)</b> 국민은행</div>
+                                <div>879601-01-273112</div>
+                                <br />
+                                <div><b>(선교)</b> 국민은행</div>
+                                <div>879601-01-288011</div>
+                                <br />
+                                <div><b>(건축)</b> 국민은행</div>
+                                <div>879601-01-274601</div>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="right-side col-10">
+                        <div class="wrapper">
+                            <div class="section home">
+                                <img src="img/poster.png" />
+                                <!--<img src="img/img3.png" />-->
+                                <div class="search">
+                                    <input type="text" class="form-control" placeholder="통합 검색" />
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <div class="slogun">
+                                    <div class="sm-title">VISION PROJECT</div>
+                                    <div class="big-title">너희 교회가 지속되기를 바라노라</div>
+                                    <div class="word">"주 앞에 영원히 있게 하옵소서 (삼하 7:29)"</div>
+                                </div>
+                                <hr />
+                                <div class="picture">
+                                    <div class="each">
+                                        <div class="title">
+                                            <span>최근 설교 영상</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
+                                        <div class="pictures">
+                                            <div class="each" v-for="s in documents.sermons">
+                                                <img v-bind:src="s.imageSrc" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="each">
+                                        <div class="title">
+                                            <span>최근 찬양 영상</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
+                                        <div class="pictures">
+                                            <div class="each" v-for="s in documents.worships">
+                                                <img v-bind:src="s.imageSrc" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="each">
+                                        <div class="title">
+                                            <span>최근 포토 앨범</span>
+                                            <span class="more btn btn-outline-primary">더 보기</span>
+                                        </div>
+                                        <div class="pictures">
+                                            <div class="each">
+                                                <img src="img/thumb1.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb2.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb3.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb4.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                            <div class="each">
+                                                <img src="img/thumb5.png" />
+                                                <div class="tent">
+                                                    <img src="svg/play-white.svg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="section d-none">
+                                <h2 class="mb-4">주일 설교</h2>
+                                <div class="description">Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                                <div class="card">
+                                    <iframe class="card-img-top" src="https://player.vimeo.com/video/399563204?byline=0&portrait=0&title=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    <div class="card-body">
+                                        <h3 class="card-title">환경 너머에 계신 하나님</h3>
+                                        <div class="card-text">
+                                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                                        </div>
+                                        <a href="#" class="btn btn-primary">공유하기</a>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="container">
+                <div class="copyright">
+                    <p>&copy; 2020. 예수촌교회. All rights reserved.</p>
+                    <div>서울 은평구 은평로10길 17 / TEL : <a href="tel:023071340">02-307-1340</a></div>
+                </div>
+                <div class="store">
+                    <a href="#" target="_blank">
+                        <img src="img/playstore.png" />
+                    </a>
+                    <a href="#" target="_blank">
+                        <img src="img/appstore.png" />
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
