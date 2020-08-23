@@ -1,0 +1,138 @@
+body {
+	font-size: 0.9rem;
+}
+
+.app {
+	padding-bottom:1rem;
+}
+
+.app img {
+	max-width: 100%;
+}
+
+.app .list-group {
+    border-radius: 0;
+}
+
+.app .btn {
+    border-radius: 0;
+	font-size: 0.9rem;
+}
+
+.app .form-control {
+    border-radius: 0;
+	font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.app textarea {
+	min-height: 5rem;
+}
+
+.app iframe {
+	background-color: #f7f7f7;
+	background-image: url(/assets/img/common.loading.svg);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.app .badge {
+	border-radius:0;
+}
+
+.app .pointer {
+	cursor:pointer;
+}
+
+.app header {
+	padding: 1.5rem;
+}
+
+.app header .logo a {
+	color: #333;
+	user-select: none;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight:bold;
+}
+
+.app header .logo a span {
+	vertical-align: middle;
+}
+
+/*
+.app header .logo a span.badge {
+	font-size:0.66rem;
+	font-weight: normal;
+	margin-left:0.1rem;
+}
+*/
+
+.app header nav a {
+	cursor: pointer;
+	user-select: none;
+}
+
+.app header nav a.active {
+	font-weight: bold;
+}
+
+.app header .play-btn {
+    font-size: 1.54rem;
+    color: #ff0101;
+    line-height: 1;
+}
+
+.app article {
+	padding-top: 1.5rem;
+}
+
+.app article table th {
+	background: #f3f3f3;
+	border-bottom-width: 1px;
+}
+
+.app footer {
+	margin-top: 2rem;
+}
+
+.app footer .container {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	border-top: 0.05rem solid #dedede;
+	line-height: 2
+}
+
+.app footer .container span, 
+.app footer .container a {
+	color: inherit;
+}
+
+.app[v-cloak] {
+	display: none;
+}
+
+@media(max-width: 767px) {
+	.app header {
+		padding: 0.5rem;
+	}
+
+	.app header .logo {
+		padding-top:1rem;
+	}
+	
+	.app header nav {
+		padding: 1rem 0;
+		margin-bottom:0;
+	}
+	
+	.app header nav a {
+		margin: 0 0.25rem;
+	}
+
+	.app header .play-btn {
+		position: absolute;
+		right: 1rem;
+		top: 1rem;
+    }
+}

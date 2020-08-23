@@ -1,0 +1,102 @@
+<div class="component-board">
+	<div class="info" v-if="info.data.id">
+		<div class="loading" v-if="!info.loaded">
+			<component-loading></component-loading>
+		</div>
+		<template v-else>
+			<div class="article">
+				<div class="title">{{ info.data.title }}</div>
+				<div class="desc">
+					<span class="extend1" v-if="info.data.extend1 && info.data.extend1 !== 'null'">{{ info.data.extend1 }}</span>
+					<span class="extend2" v-if="info.data.extend2 && info.data.extend2 !== 'null'">{{ info.data.extend2 }}</span>
+					<span class="date">{{ global.cast.date(info.data.regDate) }}</span>
+				</div>
+				<div class="videos" v-if="info.data.videoUrls && info.data.videoUrls.length">
+					<div class="each" v-for="u in info.data.videoUrls">
+						<iframe v-bind:src="'https://player.vimeo.com/video/' + u + '?title=0&byline=0&portrait=0'" width="100%" height="620" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="images" v-if="info.data.imageUrls && info.data.imageUrls.length">
+					<div class="each" v-for="u in info.data.imageUrls">
+						<img v-bind:src="u" />
+					</div>
+				</div>
+				<div class="content" v-html="info.data.content" v-if="info.data.content && info.data.content.trim()"></div>
+				<div class="actions">
+					<button class="btn btn-primary" v-on:click="edit()" v-if="global.user.admin">
+						<i class="fa fa-pencil"></i>
+						<span>&nbsp;수정</span>
+					</button>
+				</div>
+			</div>
+		</template>
+	</div>
+	<div class="list">
+		<div class="search">
+			<div class="row">
+				<div class="col-lg-2 col-3 pr-0">
+					<select class="form-control" v-model="items.data.key">
+						<option v-bind:value="null">통합</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+					</select>
+				</div>
+				<div class="col-lg-8 col-6 pl-0 pr-0">
+					<input type="text" class="form-control" v-on:keyup.enter="search()" v-model="items.data.keyword" ref="input" />
+				</div>
+				<div class="col-lg-2 col-3 pl-0">
+					<button class="btn btn-primary btn-block" v-on:click="search()">검색</button>
+				</div>
+			</div>
+		</div>
+		<table class="table table-hover">
+		  <thead>
+			<tr>
+			  <th class="num text-center d-none d-sm-table-cell" v-if="name1 !== 'worship' || name2 !== 'newwave'">번호</th>
+			  <template v-if="name1 === 'worship' && name2 === 'sunday'">
+				  <th class="extend1" style="width: 5rem">예배</th>
+				  <th class="extend1 d-none d-sm-table-cell">인도자</th>
+			  </template>
+			  <th>제목</th>
+			  <template v-if="name1 === 'sermon'">
+				  <th class="extend1 d-none d-sm-table-cell" style="width: 8rem">설교자</th>
+			  </template>
+			  <th class="date" v-if="name1 !== 'worship' || name2 !== 'newwave'">날짜</th>
+			</tr>
+		  </thead>
+		  <tbody v-if="list.data && list.data.length">
+			<tr class="pointer" v-bind:class="{ active: d.id === info.data.id }" v-for="(d, idx) in list.data" v-on:click="go(name1, name2, d.id)">
+			  <td class="text-center d-none d-sm-table-cell" v-if="name1 !== 'worship' || name2 !== 'newwave'">{{ list.count - idx }}</td>
+			  <template v-if="name1 === 'worship' && name2 === 'sunday'">
+				  <td>{{ d.extend2 }}</td>
+				  <td class="d-none d-sm-table-cell">{{ d.extend1 }}</td>
+			  </template>
+			  <td>
+				  <span>{{ d.title }}</span>
+				  <i v-if="d.videoUrls && d.videoUrls.replace('[]', '')" class="fa fa-play-circle-o" aria-hidden="true"></i>
+				  <i v-else-if="d.filePaths && d.filePaths.replace('[]', '')" class="fa fa-file-text-o" aria-hidden="true"></i>
+			  </td>
+			  <template v-if="name1 === 'sermon'">
+				  <td class="d-none d-sm-table-cell">{{ d.extend1 }}</td>
+			  </template>
+			  <td v-if="name1 !== 'worship' || name2 !== 'newwave'">{{ global.cast.date(d.regDate) }}</td>
+			</tr>
+		  </tbody>
+		  <tbody v-else-if="list.loaded">
+			<tr>
+				<td class="text-center" colspan="5">데이터가 없습니다.</td>
+			</tr>
+		  </tbody>
+		  <tbody v-else>
+			<tr>
+				<td class="text-center" colspan="5">
+					<component-loading></component-loading>
+				</td>
+			</tr>
+		  </tbody>
+		</table>
+		<div class="actions">
+			<button class="btn btn-primary" v-on:click="add()" v-if="global.user.admin">+ 추가</button>
+		</div>
+	</div>
+</div>

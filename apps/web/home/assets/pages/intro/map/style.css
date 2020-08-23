@@ -1,0 +1,16 @@
+.page-intro-map .addr {
+	position: relative;
+}
+
+.page-intro-map .addr button {
+	position: absolute;
+	right: 0;
+	top:0;
+	height:100%;
+}
+
+@media(max-width:767px) {
+	.page-intro-map iframe {
+		height: 21rem;
+	}
+}

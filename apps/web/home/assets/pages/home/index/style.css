@@ -1,0 +1,76 @@
+.page-home-index {
+	padding-bottom:2.5rem;
+}
+
+.page-home-index hr {
+	margin-top: 3rem;
+}
+
+.page-home-index .roof {
+    margin-bottom: 1rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: #29303a;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+
+.page-home-index .slogun {
+	margin:2rem 0;
+}
+
+.page-home-index .slogun .title {
+	padding-bottom: 1rem;
+    font-size: 2.1rem;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.page-home-index .slogun .description {
+	font-size: 1rem;
+	margin-top:0.25rem;
+    color: #666;
+}
+
+.page-home-index .slogun .description > span {
+	display:inline-block;
+}
+
+.page-home-index .slogun .description .bar {
+	margin:0 1rem;
+}
+
+.page-home-index .quicks {
+	margin-top:2.5rem;
+}
+
+.page-home-index .quicks > .wrapper {
+	white-space: nowrap;
+	margin-top: 1.5rem;
+	overflow:auto;
+}
+
+.page-home-index .quicks > .wrapper > .each {
+	background:#3a3a3a;
+	display:inline-block;
+	width:160px;
+	height:160px;
+	position:relative;
+	margin-right:1rem;
+	cursor: pointer;
+}
+
+.page-home-index .quicks > .wrapper > .each .title {
+    position: absolute;
+    color: #fff;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 1rem;
+}
+
+@media(max-width: 767px) {
+	.page-home-index .slogun {
+		margin: 0;
+	}
+}

@@ -1,0 +1,48 @@
+<div class="page-home-index">
+	<div class="container">
+	  <div class="slogun">
+		<div class="roof">VISION PROJECT</div>
+		  <div class="title">너희 교회가 지속되기를 바라노라</div>
+		  <div class="description">
+		     <span>가치관의 정립하는 일</span>
+			 <span class="bar">|</span>
+		     <span>건물 준비하는 일</span>
+			 <span class="bar">|</span>
+		     <span>다음세대를 세우는 일</span>
+		  </div>
+	  </div>
+	  <hr />
+	  <div class="quicks">
+		<div class="roof">SERMONS</div>
+		<div class="wrapper">
+			<div class="each" v-on:click="global.window.go('sermon', 'sunday')">
+				<div class="title">주일 오전 설교</div>
+			</div>
+			<div class="each" v-on:click="global.window.go('sermon', 'sunday3')">
+				<div class="title">주일 오후 설교</div>
+			</div>
+			<div class="each" v-on:click="global.window.go('sermon', 'wednesday')">
+				<div class="title">수요 설교</div>
+			</div>
+		</div>
+	  </div>
+	  <hr />
+	  <div class="quicks">
+		<div class="roof">QUICK MENUS</div>
+		<div class="wrapper">
+			<div class="each" v-on:click="global.window.go('worship', 'sunday')">
+				<div class="title">주일 찬양</div>
+			</div>
+			<div class="each" v-on:click="global.window.go('worship', 'newwave')">
+				<div class="title">새물결찬양</div>
+			</div>
+			<div class="each" v-on:click="global.window.go('album', 'happy')">
+				<div class="title">포토 앨범</div>
+			</div>
+			<div class="each" v-on:click="global.window.go('intro', 'map')">
+				<div class="title">찾아오시는 길</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+</div>

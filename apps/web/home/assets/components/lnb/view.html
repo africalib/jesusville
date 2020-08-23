@@ -1,0 +1,5 @@
+<div class="component-lnb">
+	<ul class="list-group">
+	  <li class="list-group-item pointer" v-bind:class="{ active: d.active }" v-for="d in list.data" v-on:click="global.window.go(name1, d.name2)">{{ d.title }}</li>
+	</ul>
+</div>

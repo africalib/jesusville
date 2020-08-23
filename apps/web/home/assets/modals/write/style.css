@@ -1,0 +1,7 @@
+.modal-write textarea {
+	min-height:15rem;
+}
+
+.modal-write input[type=file] {
+	padding: 0.25rem;
+}
