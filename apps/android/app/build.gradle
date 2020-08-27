@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "kr.or.jesusville"
-        minSdkVersion 24
+        minSdkVersion 25
         targetSdkVersion 30
-        versionCode 10011
-        versionName "1.1.0"
+        versionCode 10012
+        versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
