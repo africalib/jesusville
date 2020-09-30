@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>예수촌코딩</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css?3">
+</head>
+<body>
+    <div id="app" class="app" v-cloak v-if="enable">
+        <div class="home page" v-if="page === 'home'">
+            <img class="lego" src="img/home/coding.jpg" />
+            <div class="title">예수촌코딩</div>
+            <div class="description">예수촌코딩은 성경 이야기를 바탕으로 코딩의 원리를 배우는 프로그램입니다.</div>
+            <div class="actions">
+                <button class="btn btn-primary" v-on:click="go('make', true)">MAKE</button>
+                <!--<button class="btn btn-primary" v-on:click="go('edit')">EDIT</button>-->
+                <button class="btn btn-primary" v-on:click="go('play')">PLAY</button>
+            </div>
+        </div>
+        <div class="make page" v-else-if="page === 'make'">
+            <div class="head">
+                <a v-on:click="window.history.back()">
+                    <i class="prev fa fa-angle-left"></i>
+                </a>
+                <span v-if="make.scenario.id">EDIT</span>
+                <span v-else>MAKE</span>
+                <a v-on:click="next()">
+                    <i class="next fa fa-angle-right"></i>
+                </a>
+            </div>
+            <div class="body">
+                <div class="basic" v-if="make.step === 1">
+                    <div class="form-group">
+                        <label>시나리오 제목</label>
+                        <input type="text" class="form-control" v-model="make.scenario.title" v-on:keyup.enter="next()">
+                    </div>
+                    <div class="form-group">
+                        <label>컨트롤 개수</label>
+                        <input type="text" class="form-control" v-model="make.scenario.mainCount" readonly>
+                    </div>
+                </div>
+                <div class="character" v-if="make.step === 2">
+                    <div class="form-group">
+                        <label>캐릭터 선택</label>
+                        <div class="characters">
+                            <label class="each" v-for="c in common.characters">
+                                <span class="wrapper">
+                                    <img src="img/characters/text.png" v-if="c.name.indexOf('text') === 0" />
+                                    <img v-bind:src="'img/characters/' + c.name + '.svg'" v-else />
+                                </span>
+                                <span class="checkbox custom-control custom-checkbox" v-on:click="make.changed = true">
+                                    <input type="checkbox" class="custom-control-input" v-bind:value="c" v-model="make.scenario.characters">
+                                    <label class="custom-control-label"></label>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="position" v-if="make.step === 3">
+                    <div class="form-group">
+                        <label>캐릭터 배치</label>
+                        <div class="board">
+                            <div class="each" v-for="(n, idx) in 24">
+                                <div class="wrapper board-table">
+                                    <div class="board-row">
+                                        <div class="board-cell">
+                                            <div class="draggable" v-bind:name="character(idx).name" v-if="character(idx)" v-on:click="setMain(character(idx))">
+                                                <img class="char" src="img/characters/text.png" v-if="character(idx).name.indexOf('text') === 0" />
+                                                <img class="char" v-bind:src="'img/characters/' + character(idx).name + '.svg'" v-else />
+                                                <img class="star" src="img/characters/star.svg" v-if="character(idx).main" />
+                                            </div>
+                                            <!--<img v-bind:src="'img/characters/' + make.scenario.characters[idx].name + '.svg'" v-if="make.scenario.characters[idx] && make.scenario.characters[idx].name" />-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control" v-if="make.step === 4">
+                    <div class="form-group">
+                        <label>컨트롤 배치</label>
+                        <div class="controls base">
+                            <div class="wrapper">
+                                <div class="each" v-for="c in common.controls" v-on:click="insert(c)">
+                                    <div class="wrapper">
+                                        <img class="character" v-bind:src="'img/controls/' + c + '.svg'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="controls fact" ref="track">
+                            <div class="wrapper">
+                                <div class="each" v-for="(c, idx) in make.scenario.controls" v-on:click="splice(idx)">
+                                    <div class="wrapper">
+                                        <img class="character" v-bind:src="'img/controls/' + c + '.svg'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="move">
+                    <button class="move-btn prev btn btn-primary" v-on:click="prev()" v-if="make.step > 1">
+                        <i class="fa fa-angle-left"></i>
+                        <span>prev</span>
+                    </button>
+                    <button class="move-btn next btn btn-primary" v-on:click="next()" v-if="make.step < 4">
+                        <span>next</span>
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                    <button class="move-btn next btn btn-primary" v-on:click="save()" v-else>
+                        <span>save</span>
+                    </button>
+                </div>
+                <!--<p><br /></p>
+                {{make.scenario}}-->
+            </div>
+        </div>
+        <div class="make edit page" v-else-if="page === 'edit'">
+            <div class="head">
+                <a v-on:click="window.history.back()">
+                    <i class="prev fa fa-angle-left"></i>
+                </a>
+                <span>EDIT</span>
+            </div>
+        </div>
+        <div class="play page" v-else-if="page === 'play'">
+            <div class="head">
+                <a v-on:click="!play.running && window.history.back()">
+                    <i class="prev fa fa-angle-left"></i>
+                </a>
+                <span>PLAY</span>
+                <a v-on:click="next()" v-if="play.scene.num < play.scene.list.length">
+                    <i class="next fa fa-angle-right"></i>
+                </a>
+                <!--<div class="wrapper">
+                    <span class="side left" v-on:click="prev()">
+                        <span>prev</span>
+                    </span>
+                    <span class="center">{{ play.scene.title }}</span>
+                    <span class="side right" v-on:click="next()">
+                        <span>next</span>
+                    </span>
+                </div>-->
+            </div>
+            <div class="list" v-if="!play.scene.num">
+                <div class="form-group">
+                    <label>시나리오 선택</label>
+                    <table class="table">
+                        <tr v-for="(s, idx) in play.scene.list">
+                            <td>{{ idx + 1 }}</td>
+                            <td>
+                                <b>{{ s.title }}</b>
+                            </td>
+                            <td class="text-center">
+                                <a v-bind:href="'#/play/'+ (idx + 1)">시작</a>
+                            </td>
+                            <td class="text-center">
+                                <a v-on:click="edit(s)">수정</a>
+                            </td>
+                            <td class="text-center">
+                                <a v-on:click="remove(s.id)">삭제</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="wrapper" v-else>
+                <div class="body">
+                    <div class="each" v-for="(c, idx) in play.cells" v-bind:idx="idx">
+                        <div class="wrapper board-table">
+                            <div class="board-row">
+                                <div class="board-cell">
+                                    <span class="character" v-bind:direction="char.direction" v-for="char in c.characters">
+                                        <img class="star" src="img/characters/star.svg" v-if="char.main" />
+                                        <img class="char" src="img/characters/text.png" v-if="char.name.indexOf('text') === 0" />
+                                        <img class="char" v-bind:src="'img/characters/' + char.name + '.svg'" v-else />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot">
+                    <div class="controls">
+                        <div class="wrapper">
+                            <div class="each" v-for="c in common.controls" v-on:click="insert(c)">
+                                <img class="character" v-bind:src="'img/controls/' + c + '.svg'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="track" ref="track">
+                        <div class="wrapper">
+                            <div class="each" v-for="(t, idx) in play.tracks" v-on:click="splice(idx)">
+                                <img class="character" v-bind:src="'img/controls/' + t.name + '.svg'" />
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" v-on:click="run()" v-if="play.runnable" v-bind:disabled="play.running">
+                            <div>RUN</div>
+                            <small>{{ play.tracksTemp.length ? play.tracksTemp.length : play.tracks.length }}</small>
+                        </button>
+                        <button type="button" class="btn btn-primary" v-on:click="set()" v-else>RESET</button>
+                    </div>
+                </div>
+            </div>
+            <div class="title" v-if="play.scene.title" v-on:click="play.scene.title = null">
+                <div class="wrapper">
+                    <span>#{{ play.scene.num }}.</span>
+                    <span>{{ play.scene.title }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="lib.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

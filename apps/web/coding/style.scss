@@ -1,0 +1,469 @@
+html, body {
+    height: 100%;
+}
+
+.app {
+    height: 100%;
+    font-family: 'Nanum Barun Gothic';
+
+    .form-control {
+        border-radius: 0 !important;
+    }
+
+    button, .btn {
+        border-radius: 0 !important;
+        outline: 0 !important;
+        box-shadow: none !important;
+    }
+
+    a:not([href]):not([tabindex]) {
+        color: #007bff;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .board-table {
+        display: table;
+
+        .board-row {
+            display: table-row;
+
+            .board-cell {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    > .page {
+        padding-top: 3.5rem;
+
+        .head {
+            padding: 1rem;
+            color: #fff;
+            background: #007bff;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            top: 0;
+            text-align: center;
+            height: 3.5rem;
+            background: #007bff;
+            line-height: 1.7;
+            z-index: 1;
+
+            i {
+                color: #fff;
+                float: left;
+                position: absolute;
+                font-size: 1.4rem;
+                padding: 1rem;
+                top: 0;
+
+                &.prev {
+                    left: 0;
+                }
+
+                &.next {
+                    right: 0;
+                }
+            }
+        }
+
+        &.home {
+            text-align: center;
+            padding: 7.5rem 0;
+
+            .lego {
+                border-radius: 50%;
+                border: 1px solid #eee;
+            }
+
+            .title {
+                font-size: 1.7rem;
+                position: relative;
+                font-weight: 900;
+                text-align: center;
+                left: 0;
+                letter-spacing: 4px;
+                margin-top: 2.1rem;
+            }
+
+            .description {
+                margin-top: 1rem;
+                letter-spacing: 1px;
+                color: #666;
+                padding: 0 4.2rem;
+            }
+
+            .actions {
+                margin-top: 2rem;
+
+                button {
+                    margin: 0 0.6rem;
+                    height: 2.14rem;
+                    width: 5rem;
+                }
+            }
+        }
+
+        &.make {
+            .body {
+                width: 100%;
+                padding: 2rem;
+
+                .form-group {
+                    margin-bottom: 2rem;
+
+                    input:not([type='checkbox']) {
+                        font-size: 0.8rem;
+                        height: 2.4rem;
+                    }
+                }
+
+                > .character {
+                    .characters {
+                        margin: -0.25rem;
+
+                        > .each {
+                            display: inline-block;
+                            padding: 0.25rem;
+                            width: 25%;
+                            position: relative;
+                            margin: 0;
+
+                            .wrapper {
+                                display: inline-block;
+                                width: 100%;
+                                border: 1px solid #ddd;
+                                padding: 1rem;
+
+                                img {
+                                    max-width: 100%;
+                                }
+                            }
+
+                            .checkbox {
+                                position: absolute;
+                                right: 0;
+                                top: 0.4rem;
+
+                                input {
+                                    visibility: hidden;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                > .position {
+                    .board {
+                        height: 30rem;
+                        border-right: 1px solid #ddd;
+                        border-bottom: 1px solid #ddd;
+
+                        > .each {
+                            text-align: center;
+                            vertical-align: middle;
+                            display: inline-block;
+                            position: relative;
+                            height: calc(100%/6);
+                            width: calc(100%/4);
+
+                            > .wrapper {
+                                width: 100%;
+                                height: 100%;
+                                border-left: 1px solid #ddd;
+                                border-top: 1px solid #ddd;
+
+                                .draggable {
+                                    img {
+                                        z-index: 1;
+
+                                        &.char {
+                                            padding: 1.25rem;
+                                        }
+
+                                        &.star {
+                                            position: absolute;
+                                            right: 0.5rem;
+                                            top: 0.5rem;
+                                            width: 0.8rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                > .control {
+                    .controls {
+                        height: 4.6rem;
+                        white-space: nowrap;
+
+                        > .wrapper {
+                            height: 100%;
+                            overflow: auto;
+
+                            > .each {
+                                display: inline-block;
+                                padding: 0.25rem;
+                                width: calc(100%/5);
+                                position: relative;
+                                margin: 0;
+
+                                > .wrapper {
+                                    display: inline-block;
+                                    width: 100%;
+                                    padding: 1rem;
+
+                                    img {
+                                        max-width: 100%;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.base {
+                            margin: -0.25rem;
+                            margin-bottom: 1rem;
+
+                            > .wrapper {
+                                > .each {
+                                    .wrapper {
+                                        border: 1px solid #ddd;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.fact {
+                            border: 1px solid #ddd;
+                        }
+                    }
+                }
+
+                .move {
+                    display: inline-block;
+                    width: 100%;
+
+                    .move-btn {
+                        font-size: 0.9rem;
+                        position: relative;
+                        width: 45%;
+                        height: 2.5rem;
+
+                        i {
+                            font-size: 0.8rem;
+                            position: absolute;
+                            margin-top: -0.35rem;
+                            top: 50%;
+                        }
+
+                        &.prev {
+                            float: left;
+
+                            i {
+                                left: 1rem;
+                            }
+                        }
+
+                        &.next {
+                            float: right;
+
+                            i {
+                                right: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.edit {
+            > .body {
+            }
+        }
+
+        &.play {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+
+            .head {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+
+            .list {
+                padding: 2rem;
+
+                table {
+                    margin-top: 0.75rem;
+
+                    td {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+
+            .wrapper {
+                height: 100%;
+                position: relative;
+
+                .body {
+                    height: 80%;
+                    width: 100%;
+                    font-size: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    .each {
+                        text-align: center;
+                        vertical-align: middle;
+                        display: inline-block;
+                        overflow: hidden;
+                        position: relative;
+                        height: calc(100%/6);
+                        width: calc(100%/4);
+
+                        > .wrapper {
+                            width: 100%;
+                            height: 100%;
+                            border-left: 1px solid #ddd;
+                            border-top: 1px solid #ddd;
+
+                            .character {
+                                max-width: 100%;
+                                max-height: 100%;
+                                display: inline-block;
+
+                                &[direction='9'] {
+                                    .char {
+                                        transform: rotate(-90deg);
+                                    }
+                                }
+
+                                &[direction='3'] {
+                                    .char {
+                                        transform: rotate(90deg);
+                                    }
+                                }
+
+                                &[direction='6'] {
+                                    .char {
+                                        transform: rotate(180deg);
+                                    }
+                                }
+
+                                img {
+                                    &.star {
+                                        position: absolute;
+                                        right: 0.75rem;
+                                        top: 0.75rem;
+                                        width: 1rem;
+                                    }
+
+                                    &.char {
+                                        width: 2.65rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .foot {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 20%;
+                    border-top: 1px solid #ddd;
+
+                    > div {
+                        height: 50%;
+                        white-space: nowrap;
+                        font-size: 0;
+
+                        > .wrapper {
+                            overflow: scroll;
+                            height: 100%;
+
+                            .each {
+                                display: inline-block;
+                                height: 100%;
+                                text-align: center;
+
+                                img {
+                                    height: 100%;
+                                    padding: 20px;
+                                }
+                            }
+                        }
+
+                        &.controls {
+                            border-bottom: 1px solid #ddd;
+
+                            .each {
+                                width: calc(100%/5);
+                            }
+                        }
+
+                        &.track {
+                            position: relative;
+
+                            .each {
+                                width: calc(100%/4);
+                                vertical-align: top;
+                            }
+
+                            padding-right: calc(100%/5);
+
+                            button {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                height: 100%;
+                                width: calc(100%/5);
+                                font-style: italic;
+                                font-weight: 800;
+                                font-size: 1rem;
+                                border: 0;
+                                padding-top: 0.42rem;
+                                line-height: 1.2;
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .title {
+                position: absolute;
+                top: 50%;
+                margin-top: -3rem;
+                width: 100%;
+                text-align: center;
+                z-index: 3;
+
+                > .wrapper {
+                    padding: 1rem;
+                    width: 75%;
+                    display: inline-block;
+                    background: rgba(0,0,0,0.75);
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &[v-cloak] {
+        display: none;
+    }
+}
