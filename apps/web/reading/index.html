@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="bible read">
+    <meta name="author" content="Jesusville Church">
+    <meta charset="utf-8" />
+    <title>예수촌교회 성경읽기표</title>
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="app.css?11" rel="stylesheet" />
+</head>
+<body oncontextmenu="return false">
+    <div id="app" class="app" v-cloak>
+        <div class="page home bg-white rounded" v-if="temp.page === 'home'">
+            <template v-if="temp.pwd">
+                <div class="header border-bottom border-gray mb-0">
+                    <div class="wrapper">
+                        <strong>예수촌교회</strong>
+                        <span>성경읽기표</span>
+                        <small>{{ percent(average(), data.chapterCount) }}</small>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3" v-bind:data-id="o.id" v-bind:class="{ 'border-bottom' : idx !== oikoses.length - 1 }" v-for="(o, idx) in oikoses" v-on:click="go('oikos', o.id)" v-bind:key="o.id">
+                    <span class="square" v-bind:style="{ background : data.patterns[idx % data.patterns.length] }">
+                        <span>{{ idx + 1 }}</span>
+                    </span>
+                    <p class="media-body pb-3 mb-0 small lh-125 border-gray">
+                        <strong class="d-block text-gray-dark">{{ o.name }}</strong>
+                        <span class="desc">성경 전체의 {{ percent(average(o.id), data.chapterCount) }}를 읽었습니다.</span>
+                    </p>
+                </div>
+                <div v-if="!oikoses.length && temp.ready" class="empty-message">데이터가 없습니다.</div>
+                <div class="footer">
+                    <div class="wrapper">
+                        <small class="d-block text-right">
+                            <a class="pointer" v-on:click="addOikos()">추가하기</a>
+                        </small>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="container login">
+                    <h5>암호를 입력해주세요.</h5>
+                    <input type="number" ref="pwd" class="form-control" v-model="temp.inputPwd" pattern="[0-9]*" inputmode="numeric" maxlength="4" />
+                    <button type="button" ref="btn" class="form-control btn btn-primary" v-on:click="login()">로그인</button>
+                </div>
+            </template>
+        </div>
+        <div class="page oikos bg-white rounded" v-else-if="temp.page === 'oikos'">
+            <div class="header border-bottom border-gray mb-0">
+                <div class="wrapper">
+                    <span>{{ temp.oikos.name }}</span>
+                    <small>{{ percent(average(temp.oikos.id), data.chapterCount) }}</small>
+                </div>
+            </div>
+            <div class="media text-muted pt-3" v-bind:data-id="m.id" v-bind:class="{ 'border-bottom' : idx !== members.length - 1 }" v-for="(m, idx) in members" v-on:click="go('member', m.id)" v-bind:key="m.id">
+                <span class="square" v-bind:style="{ background : data.patterns[idx % data.patterns.length ] }">
+                    <span>{{ idx + 1 }}</span>
+                </span>
+                <p class="media-body pb-3 mb-0 small lh-125 border-gray">
+                    <strong class="d-block text-gray-dark">{{ m.name }}</strong>
+                    <span class="desc">{{ latest(m.read) }}</span>
+                    <span class="desc float-right">{{ percent(m.reads.length, data.chapterCount) }}</span>
+                </p>
+            </div>
+            <div v-if="!members.length" class="empty-message">데이터가 없습니다.</div>
+            <div class="footer">
+                <div class="wrapper">
+                    <small class="d-block float-left">
+                        <a class="back-btn" v-on:click="go('home')">뒤로가기</a>
+                    </small>
+                    <small class="d-block text-right">
+                        <a v-on:click="addMember()">추가하기</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="page member bg-white rounded" v-else-if="temp.page === 'member'">
+            <div class="header border-bottom border-gray mb-0">
+                <div class="wrapper">
+                    <span>{{ temp.member.name }}</span>
+                    <small>{{ percent(temp.member.reads.length, data.chapterCount) }}</small>
+                </div>
+            </div>
+            <div class="each-book media text-muted pt-3" v-bind:class="{ 'border-bottom' : idx1 !== data.books.length - 1 }" v-bind:data-idx="b.idx" v-for="(b, idx1) in data.books" v-bind:key="b.name">
+                <span class="square" v-bind:style="{ background : data.patterns[idx1 % data.patterns.length ] }">
+                    <span>{{ idx1 + 1 }}</span>
+                </span>
+                <div class="media-body pb-3 mb-0 small lh-125 border-gray">
+                    <strong class="d-block text-gray-dark">{{ b.title }}</strong>
+                    <span class="desc">{{ state(b) }}</span>
+                    <a class="all" v-on:click="checkAll(b)">전체 체크</a>
+                    <hr />
+                    <span class="each-chapter" v-bind:class="{ readed : temp.member.reads.indexOf(idx2 + b.idx) >= 0 }" v-on:click="check(idx2 + b.idx)" v-for="(d, idx2) in b.last" v-bind:key="d">{{ d }}</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="wrapper">
+                    <small class="d-block float-left">
+                        <a class="pointer back-btn" v-on:click="go('oikos', temp.member.oikos)">뒤로가기</a>
+                    </small>
+                    <small class="d-block text-right">
+                        <a class="pointer" v-on:click="reset()">기록 삭제</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" ref="oikosModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">오이코스</h6>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="f-8">오이코스명</label>
+                            <input type="text" class="form-control f-8" v-model="temp.oikos.name" v-on:keyup.enter="saveOikos()" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="f-76 btn btn-danger float-left" v-on:click="removeOikos()" v-if="temp.mode === 'edit'">삭제</button>
+                        <div class="btn-group">
+                            <button type="button" class="f-76 btn btn-primary" v-on:click="saveOikos()">저장하기</button>
+                            <button type="button" class="f-76 btn btn-secondary" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" ref="memberModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">교인</h6>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="f-8">교인 이름</label>
+                            <input type="text" class="form-control f-8" v-model="temp.member.name" v-on:keyup.enter="saveMember()" />
+                        </div>
+                        <div class="form-group">
+                            <label class="f-8">오이코스</label>
+                            <select v-model="temp.member.oikos" class="f-8 form-control">
+                                <option v-bind:value="o.id" v-for="o in public.oikoses">{{ o.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="f-76 btn btn-danger float-left" v-on:click="removeMember()" v-if="temp.mode === 'edit'">삭제</button>
+                        <div class="btn-group">
+                            <button type="button" class="f-76 btn btn-primary" v-on:click="saveMember()">저장하기</button>
+                            <button type="button" class="f-76 btn btn-secondary" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js?20"></script>
+</body>
+</html>

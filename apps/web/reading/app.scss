@@ -1,0 +1,195 @@
+﻿$maxWidth: 980px;
+
+.app {
+    margin: 3.9rem auto;
+    max-width: $maxWidth;
+
+    .wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .f-76 {
+        font-size: 0.76rem !important;
+    }
+
+    .f-8 {
+        font-size: 0.8rem !important;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .empty-message {
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .modal {
+        .modal-footer {
+            display: block;
+            text-align: right;
+        }
+    }
+
+    a {
+        color: #007bff !important;
+    }
+
+    .page {
+        .header {
+            position: fixed;
+            width: 100%;
+            background: #fff;
+            left: 0;
+            top: 0;
+            font-size: 1rem;
+            z-index: 1;
+
+            > .wrapper {
+                max-width: $maxWidth;
+                padding: 1.2rem;
+            }
+
+            small {
+                color: #6a6a6a;
+                float: right;
+                margin-top: 3px;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            width: 100%;
+            background: #fff;
+            left: 0;
+            height: 60px;
+            bottom: 0;
+            border-top: 1px solid #dee2e6;
+
+            > .wrapper {
+                max-width: $maxWidth;
+            }
+
+            a {
+                padding: 20px;
+                cursor: pointer;
+                display: inline-block;
+            }
+        }
+
+        &.home {
+            .login {
+                padding-left: 50px;
+                padding-right: 50px;
+
+                h5 {
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                input {
+                    -webkit-text-security: disc;
+                    text-align: center;
+                    margin-top: 30px;
+                    margin-bottom: 20px;
+                    padding: 20px;
+                }
+
+                button {
+                    margin-top: 10px;
+                    font-size: 13px;
+                    height: 42px;
+                }
+            }
+        }
+
+        > .media {
+            position: relative;
+            padding: 0 1.2rem;
+            cursor: pointer;
+
+            .media-body {
+                position: relative;
+            }
+
+            .square {
+                width: 37px;
+                height: 37px;
+                border-radius: 4px;
+                color: #fff;
+                margin-right: 0.9rem;
+                text-align: center;
+                font-style: italic;
+                font-size: 0.8rem;
+                display: table;
+
+                span {
+                    display: table-cell;
+                    vertical-align: middle;
+                    line-height: 0;
+                }
+            }
+
+            .desc {
+                font-size: 0.8rem;
+            }
+
+            .all {
+                cursor: pointer;
+                position: absolute;
+                right: 9px;
+                top: 9px;
+            }
+        }
+
+        &.member {
+            .media-body {
+                .each-chapter {
+                    display: inline-block;
+                    padding: 12px 5px;
+                    margin: 5px;
+                    width: 42px;
+                    text-align: center;
+
+                    &.readed {
+                        background: #eee;
+                    }
+                }
+            }
+        }
+    }
+
+    &[v-cloak] {
+        display: none;
+    }
+}
+
+@media(min-width:1200px) {
+    .app .page {
+        &.home, &.oikos {
+            > .media:hover {
+                border-left: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+                background: #f7f7f7;
+            }
+        }
+
+        &.member {
+            .media-body {
+                .each-chapter {
+                    &:hover {
+                        background: #f7f7f7;
+                    }
+
+                    &.readed {
+                        background: #eee;
+                    }
+                }
+            }
+        }
+    }
+}
